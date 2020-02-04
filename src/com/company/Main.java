@@ -44,7 +44,8 @@ public class Main {
                 "2 - go to previous song\n" +
                 "3 - replay song\n" +
                 "4 - delete song\n" +
-                "5 - print menu options");;
+                "5 - print playlist\n" +
+                "6 - print menu options");;
     }
     private static void playSong(PlayList myPlayList){
         Scanner scanner = new Scanner(System.in);
@@ -131,6 +132,9 @@ public class Main {
                     }
                     break;
                 case 5:
+                    myPlayList.printList();
+                    break;
+                case 6:
                     printMenu();
                     break;
             }

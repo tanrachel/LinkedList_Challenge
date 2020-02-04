@@ -19,7 +19,7 @@ public class PlayList {
         playList.add(song);
     }
     public void printList(){
-        System.out.println("========="+this.playListName+"==========");
+        System.out.println("========= "+this.playListName+" ==========");
         Iterator<Song> i = playList.iterator();
         while(i.hasNext()){
             System.out.println(i.next().getSong());
