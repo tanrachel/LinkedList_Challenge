@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+//        creating album and songs to test
         Album everglow = new Album("everglow");
         Song dundun = new Song("Dun Dun Dun", 3.54);
         Song salute = new Song("Salute",2.55);
@@ -25,7 +26,7 @@ public class Main {
 
 //        everglow.printAlbum();
 //        twice.printAlbum();
-
+//adding in playlist for testing
         PlayList myPlayList = new PlayList("myPlayList");
         myPlayList.addSong(feelspecial);
         myPlayList.addSong(dundun);
@@ -55,7 +56,7 @@ public class Main {
             System.out.println("Playlist is empty");
             return;
         }else{
-            System.out.println("Now playing "+ listIterator.next().getSong());
+            System.out.println("Now playing "+ listIterator.next().getSong()); //start loop
             printMenu();
         }
 
@@ -68,21 +69,21 @@ public class Main {
                     quit = true;
                     break;
                 case 1:
-                    if(!goingForward){
+                    if(!goingForward){ //checking where we are: [x] object [x], if we went backwards [o] object [x] and we have to get to [x] object [o]
                         if(listIterator.hasNext()){
                             listIterator.next();
                         }
                         goingForward = true;
                     }
                     if(listIterator.hasNext()){
-                        System.out.println("Now playing: "+ listIterator.next().getTitle());
+                        System.out.println("Now playing: "+ listIterator.next().getTitle()); // [x] object1 [o] object2 [o2]
                     }else{
                         System.out.println("Reached end of playlist!");
                         goingForward = false;
                     }
                     break;
                 case 2:
-                    if(goingForward){
+                    if(goingForward){//checking where we are: [x] object [x], if we went forwards [x] object [o] and we have to get to [o] object [x]
                         if(listIterator.hasPrevious()){
                             listIterator.previous();
                         }
@@ -96,35 +97,33 @@ public class Main {
                     }
                     break;
                 case 3:
-                    if(goingForward){
+                    if(goingForward){ //if we were going forward our position: [x] object [o]
                         if(listIterator.hasPrevious()){
-                            System.out.println("Now playing: "+ listIterator.previous().getTitle());
-                            listIterator.next();
+                            System.out.println("Now playing: "+ listIterator.previous().getTitle()); // this puts us to [o] object [x]
+                            listIterator.next();// this puts us back to [x] object [o]
                         }else{
                             System.out.println("Cannot replay start of the playlist!");
                         }
-                    }else if (!goingForward){
+                    }else if (!goingForward){// this means were going backward: [o] object [x]
                         if(listIterator.hasNext()){
-                            System.out.println("Now playing: "+ listIterator.next().getTitle());
-                            listIterator.previous();
+                            System.out.println("Now playing: "+ listIterator.next().getTitle()); // this brings us back to [x] object [o]
+                            listIterator.previous(); // returns us to original position [o] object [x]
                         }else{
                             System.out.println("Cannot replay end of the playlist!");
                         }
                     }
                     break;
                 case 4:
-                    if(goingForward){
+                    if(goingForward){ // if we were going forward: [x] object [o]
                         if(listIterator.hasPrevious()){
-                            System.out.println("Deleted: "+ listIterator.previous().getTitle());
-                            listIterator.next();
-                            listIterator.remove();
+                            System.out.println("Deleted: "+ listIterator.previous().getTitle());//print our title [o] object [x]
+                            listIterator.remove(); // remove hinges on last next()/previous(), so this would remove object as that was the one we jumped across
                         }else{
                             System.out.println("Cannot delete start of the playlist!");
                         }
                     }else if (!goingForward){
                         if(listIterator.hasNext()){
                             System.out.println("Deleted: "+ listIterator.next().getTitle());
-                            listIterator.previous();
                             listIterator.remove();
                         }else{
                             System.out.println("Cannot delete end of the playlist!");
